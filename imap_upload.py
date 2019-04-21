@@ -259,7 +259,11 @@ def recursive_upload(imap, box, src, err, time_fields):
             mbox = mailbox.mbox(path, create=False)
             if err:
                 err = mailbox.mbox(err)
-            upload(imap, fileName, mbox, err, time_fields)
+
+            if box:
+                upload(imap, box, mbox, err, time_fields)
+            else:
+                upload(imap, fileName, mbox, err, time_fields)
 
 
 def get_delivery_time(self, fields):
