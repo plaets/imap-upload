@@ -59,3 +59,31 @@ For more details, please refer to the --help message:
 ```sh
 python imap_upload.py --help
 ```
+
+### Expected directory structure in recursive mode
+
+`imap_upload.py -r mail imap://user@hostname`
+
+###### Example 1
+
+```
+mail/:
+    SENT/:
+        - mailbox1.mbox
+        - mailbox2.mbox
+    INBOX/:
+        - mailbox3.mbox
+        - mailbox4.mbox
+```
+
+In this case, mbox files will be merged and uploaded to mailboxes named after their parent directories. In this example: files `mailbox1.mbox` and `mailbox2.mbox` will be uploaded to a mailbox named `SENT`, files `mailbox3.mbox` and `mailbox4.mbox` will be uploaded into a mailbox named `INBOX`.
+
+###### Example 2
+
+```
+mail/:
+    - INBOX.mbox
+    - SENT.mbox
+```
+
+In this case, mbox files will be uploaded to mailboxes named after their filename (without extension). In this example: file `INBOX.mbox` will be uploaded to a mailbox named `INBOX`, file `SENT.mbox` will be uploaded into a mailbox named `SENT`.
